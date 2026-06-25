@@ -17,13 +17,12 @@ async function registration(req, res) { // Added req and res parameters
             id:user._id
         },process.env.JWT_SECRET);
 
-        res.cookie('token',token);
-
-        // Send a success response back to the client
+        res.cookie('token', token);
         return res.status(201).json({
-            success: true,
-            message: "User registered successfully",
-            data: user
+        success: true,
+        message: "User registered successfully",
+        token: token,
+        data: user
         });
 
     } catch (error) {
@@ -56,11 +55,11 @@ async function login(req, res) {
 
         // Set the cookie
         res.cookie('token', token);
-
         return res.status(200).json({
-            success: true,
-            message: "Logged in successfully",
-            data: user
+        success: true,
+        message: "Logged in successfully",
+       token: token,
+        data: user
         });
 
     } catch (error) {
