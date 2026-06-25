@@ -9,7 +9,10 @@ const authRouter = require('./routers/auth.route');
 const postRouter = require('./routers/post.route');
 
 // Ensure NO trailing slashes or paths in your allowed origins
-const allowedOrigins = ['https://social-media-frontend-delta-lac.vercel.app'];
+const allowedOrigins = [
+  'https://social-media-frontend-delta-lac.vercel.app',
+  'https://social-media-frontend-six-lake.vercel.app'
+];
 
 app.use(cors({
   origin: function (origin, callback) {
