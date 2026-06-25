@@ -9,9 +9,9 @@ const authRouter = require('./routers/auth.route')
 const postRouter = require('./routers/post.route')
 
 app.use(cors({
-    origin: 'http://localhost:5173', // Points to your Vite frontend port
+    origin: 'https://social-media-frontend-delta-lac.vercel.app/login', // Your live frontend Vercel URL
     credentials: true                
-}))
+}));
 
 app.use(express.json())
 app.use(cookieParse())
