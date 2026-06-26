@@ -13,22 +13,18 @@ const allowedOrigins = [
   'https://social-media-frontend-six-lake.vercel.app'  // ✅ already there?
 ];
 
+app.options('*', cors()); // ✅ Handle preflight for all routes
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps, Postman, or curl)
     if (!origin) return callback(null, true);
-    
-    // Strip trailing slashes or paths from incoming origin if they exist for some reason
     const cleanOrigin = new URL(origin).origin;
-
     if (allowedOrigins.includes(cleanOrigin)) {
       return callback(null, true);
     } else {
-      const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
-      return callback(new Error(msg), false);
+      return callback(new Error(`CORS blocked: ${origin}`), false);
     }
   },
-  credentials: true 
+  credentials: true
 }));
 
 app.use(express.json());
